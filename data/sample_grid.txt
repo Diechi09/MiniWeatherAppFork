@@ -1,0 +1,5 @@
+# Sample 4x4 initialization values (used only for demonstration / testing)
+1 1 1 1
+1 2 2 1
+1 2 3 1
+1 1 1 1

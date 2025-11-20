@@ -1,5 +1,5 @@
-# miniWeather Project - Required Modules
-gcc/12.2.0
-openmpi/4.1.5
-perf
-# likwid (optional, if available)
+# Magic Castle / EESSI modules required for building the MPI+OpenMP stencil
+EESSI/2023.12
+foss/2023b               # GCC 13.2.0 + OpenMPI 4.1.6 + OpenBLAS 0.3.24
+perf/6.6                 # Kernel perf for on-node profiling
+likwid/5.2.2             # Optional hardware counter profiling (if installed)
