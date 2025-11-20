@@ -1,19 +1,21 @@
-# miniWeather Project Definition File
+Bootstrap: docker
+From: ubuntu:22.04
 
-PROJECT_NAME="miniWeather-HPC"
-CLUSTER_ENVIRONMENT="Magic Castle (EESSI)"
-COMPILER="gcc/12.2.0"
-MPI_LIBRARY="openmpi/4.1.5"
-PROFILING_TOOL="perf"
-NUM_NODES_DEFAULT=1
-TASKS_PER_NODE_DEFAULT=4
+%post
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update && apt-get install -y --no-install-recommends \
+        build-essential openmpi-bin libopenmpi-dev \
+        libomp-dev ca-certificates wget git perf \
+        && rm -rf /var/lib/apt/lists/*
+    mkdir -p /opt/hpc-app
+    echo "Container built for Magic Castle fallback runs" > /opt/hpc-app/README
 
-# Default runtime parameters
-GRID_SIZE_X=128
-GRID_SIZE_Y=128
-GRID_SIZE_Z=64
-TIMESTEPS=100
+%environment
+    export OMP_NUM_THREADS=${OMP_NUM_THREADS:-4}
+    export PATH=/opt/hpc-app:$PATH
 
-# Author / Maintainers
-TEAM_MEMBERS="Cayetana, Hibba, Gaby, Sofia, Diego, and Diana"
-LAST_UPDATED="2025-11-05"
+%labels
+    Author IE-HPC-Group
+    Application miniweather_hpc
+    Description "MPI + OpenMP 2D stencil CPU build for Alliance/EESSI"
+    Build-date `date`

@@ -1,23 +1,17 @@
-# Ignore binaries that start with "miniweather_"
-miniweather_mpi
-miniweather_openacc
-miniweather_mpi_openacc
-miniweather_hybrid
-miniweather_serial
-miniweather_openmp
+# Build artifacts
+src/*.o
+src/miniweather_hpc
 
-# Ignore any cached or temporary files
-*.o
+# Editor settings
+.vscode/
+
+# Slurm and runtime logs
+logs/
 *.out
-*.exe
+*.err
 
-# Ignore all result artifacts
-/results/
-/results/**
-/results/*
-
-# (Optional) explicitly ignore common result file types
-results/**/*.csv
-results/**/*.err
-results/**/*.log
-results/**/*.txt
+# Generated results (keep templates)
+results/*.csv
+!results/*template.csv
+results/profiling/*.csv
+results/plots/*.png
